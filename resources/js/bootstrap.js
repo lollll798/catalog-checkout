@@ -51,13 +51,11 @@ window.Echo.private('NotificationChannel')
         $('#notiCountBadge').html(e.message);
         if (title == 'Purchase Orders') {
             let idx = e.documentID;
-            console.log('here', idx);
             $("i").remove('#status-'+idx);
             $(".po-badge-"+idx+"").append('<i class="fas fa-times po-icon po-reject status-'+idx+'" style="position: relative; left: 1px; id="status-'+idx+'"  idx="status-'+idx+'"></i>');
             $(".po-badge-"+idx+"").removeClass('po-normal');
             $(".po-badge-"+idx+"").removeClass('po-success');
             $(".po-badge-"+idx+"").addClass('po-reject');
         }
-        console.log(e, title);
     }
 );

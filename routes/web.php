@@ -36,12 +36,3 @@ Route::post('/cancelOrder', 'OrderPurchaseController@orderPurchaseAction');
 Route::get('/getNotification', 'NotificationController@getUserNotification');
 Route::get('/getUnreadNotification', 'NotificationController@getUnreadNotification');
 Route::get('/sellerCancelPO', 'NotificationController@generateNotification');
-
-
-// Route::get('event', function() {
-//     event(new NotificationEvent('Hiiii'));
-// });
-// Route::get('listenEvent', function() {
-//     return view('listenBroadcast');
-// });
-

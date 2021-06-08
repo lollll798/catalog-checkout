@@ -1,5 +1,3 @@
-
-<?php //dd($data); ?>
 <div class="container px-4 px-lg-5 mt-0 item-section" style="{{ count($data) == 0? 'justify-content: center' : ''}}">
     @if (count($data) == 0)
         <img style="max-width: 500px; max-height: 200px; min-width: 300px; min-height: 200px !important; align-self: center;" alt="lazyloaded image" srcset="{{ asset('assets/no-result.png') }}" data-lazyload="{{ asset('assets/empty-cart.png') }}" data-loaded="true">
