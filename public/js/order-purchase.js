@@ -6,7 +6,7 @@ $(document).ready(function() {
         $('#btn-po-receive').attr('idx', '');
         $('#pomodal').modal('show');
         $('.po-data').html("");
-        $('.po-footer-btn').hide();
+        $('.modal-footer').hide();
         $.ajax({
             type: 'GET',
             url:  'getOrderPurcahseDetails?idx=' + idx,
@@ -21,9 +21,9 @@ $(document).ready(function() {
                 $('#btn-po-receive').attr('idx', idx);
                 $('.po-data').html(html);
                 if (status > 1) {
-                    $('.po-footer-btn').hide();
+                    $('.modal-footer').hide();
                 } else {
-                    $('.po-footer-btn').show();
+                    $('.modal-footer').show();
                 }
             },
             error: function (data) {
@@ -36,6 +36,7 @@ $(document).ready(function() {
 
     $('.po-close').on('click',function(){
         $('#pomodal').modal('hide');
+        $('#notipomodal').modal('hide');
     });
 
     $(document).on('click', '#btn-po-cancel', function(e) {

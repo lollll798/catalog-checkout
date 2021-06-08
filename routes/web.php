@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\NotificationEvent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', 'APIController@requestCatalogList');
 
@@ -28,3 +32,16 @@ Route::post('/checkout', 'CartController@checkoutCart');
 Route::get('/getOrderPurcahse', 'OrderPurchaseController@getOrderPurchase');
 Route::get('/getOrderPurcahseDetails', 'OrderPurchaseController@getOrderPurchaseDetails');
 Route::post('/cancelOrder', 'OrderPurchaseController@orderPurchaseAction');
+
+Route::get('/getNotification', 'NotificationController@getUserNotification');
+Route::get('/getUnreadNotification', 'NotificationController@getUnreadNotification');
+Route::get('/sellerCancelPO', 'NotificationController@generateNotification');
+
+
+// Route::get('event', function() {
+//     event(new NotificationEvent('Hiiii'));
+// });
+// Route::get('listenEvent', function() {
+//     return view('listenBroadcast');
+// });
+

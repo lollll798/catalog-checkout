@@ -35,13 +35,29 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo';
+import Echo from 'laravel-echo';
 
-// window.Pusher = require('pusher-js');
+window.Pusher = require('pusher-js');
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: true
-// });
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: process.env.MIX_PUSHER_APP_KEY,
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    forceTLS: true
+});
+
+window.Echo.private('NotificationChannel')
+    .listen('NotificationEvent', (e) => {
+        $('#notiCountBadge').html(e.message);
+        if (title == 'Purchase Orders') {
+            let idx = e.documentID;
+            console.log('here', idx);
+            $("i").remove('#status-'+idx);
+            $(".po-badge-"+idx+"").append('<i class="fas fa-times po-icon po-reject status-'+idx+'" style="position: relative; left: 1px; id="status-'+idx+'"  idx="status-'+idx+'"></i>');
+            $(".po-badge-"+idx+"").removeClass('po-normal');
+            $(".po-badge-"+idx+"").removeClass('po-success');
+            $(".po-badge-"+idx+"").addClass('po-reject');
+        }
+        console.log(e, title);
+    }
+);

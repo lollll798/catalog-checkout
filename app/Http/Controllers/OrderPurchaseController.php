@@ -15,7 +15,7 @@ use App\UseCases\Cart\AssignCartDetails;
 use App\UseCases\OrderPurchase\GetFormatedDate;
 use App\UseCases\OrderPurchase\EncodeOrderPurchase;
 use App\UseCases\OrderPurchase\UpdateOrderPurchase;
-
+use App\Http\Controllers\NotificationController;
 class OrderPurchaseController extends Controller
 {
     use Hash;
@@ -25,6 +25,7 @@ class OrderPurchaseController extends Controller
     private $getCartItem;
     private $getProductDetail;
     private $updateOrderPurchase;
+    private $notificationController;
 
     public function __construct(
         GetProductDetail $getProductDetail,
@@ -34,7 +35,8 @@ class OrderPurchaseController extends Controller
         AssignCartDetails $assignCartDetails,
         GetFormatedDate $getFormatedDate,
         EncodeOrderPurchase $encodeOrderPurchase,
-        UpdateOrderPurchase $updateOrderPurchase
+        UpdateOrderPurchase $updateOrderPurchase,
+        NotificationController $notificationController
     ) {
         $this->userID = 1;
         $this->getProductDetail = $getProductDetail;
@@ -45,6 +47,7 @@ class OrderPurchaseController extends Controller
         $this->getFormatedDate = $getFormatedDate;
         $this->encodeOrderPurchase = $encodeOrderPurchase;
         $this->updateOrderPurchase = $updateOrderPurchase;
+        $this->notificationController = $notificationController;
     }
 
 
@@ -55,7 +58,8 @@ class OrderPurchaseController extends Controller
         $data = $this->encodeOrderPurchase->execute($data);
         $cart = $this->cartItem->getCart($this->userID)[0];
         $cartCount = count($this->getCartItem->execute($cart['id']));
-        return View::make('order-purchase.index', compact('data', 'title', 'cartCount'));
+        $notificationCount = count($this->notificationController->getUnreadNotification());
+        return View::make('order-purchase.index', compact('data', 'title', 'cartCount', 'notificationCount'));
     }
 
     public function getOrderPurchaseDetails(Request $request)

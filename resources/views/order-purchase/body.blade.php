@@ -13,8 +13,8 @@
 <br/><hr/>
 
 @if (count($poItems) == 0)
-<img style="max-width: 500px; max-height: 200px; min-width: 300px; min-height: 200px !important;" alt="lazyloaded image" srcset="{{ asset('assets/empty-cart.png') }}" data-lazyload="{{ asset('assets/empty-cart.png') }}" data-loaded="true">
-<div style="font-weight: bold; font-size: 25px; position: relative; right: 40px;">No items inside cart</div>
+<img style="max-width: 500px; max-height: 200px; min-width: 300px; min-height: 200px !important; align-self: center;" alt="lazyloaded image" srcset="{{ asset('assets/no-result.png') }}" data-lazyload="{{ asset('assets/empty-cart.png') }}" data-loaded="true">
+<div style="font-weight: bold; font-size: 25px; align-self: center; color: #8c8d94;">No item in order purchase</div>
 @endif
 
 @foreach ($poItems as $item)

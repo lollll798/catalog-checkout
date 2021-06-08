@@ -10,6 +10,7 @@ use App\Contracts\CartItemInterface;
 use App\UseCases\API\GetProductList;
 use App\UseCases\API\GetProductDetail;
 use App\UseCases\Cart\GetCartItems;
+use App\Http\Controllers\NotificationController;
 
 class APIController extends Controller
 {
@@ -18,17 +19,21 @@ class APIController extends Controller
     private $getProductList;
     private $getProductDetail;
     private $getCartItem;
+    private $notificationController;
+
     public function __construct(
         CartItemInterface $cartItem,
         GetProductList $getProductList,
         GetProductDetail $getProductDetail,
-        GetCartItems $getCartItem
+        GetCartItems $getCartItem,
+        NotificationController $notificationController
     )
     {
         $this->cartItem = $cartItem;
         $this->getProductList = $getProductList;
         $this->getProductDetail = $getProductDetail;
         $this->getCartItem = $getCartItem;
+        $this->notificationController = $notificationController;
     }
 
     public function requestCatalogList(Request $request)
@@ -39,7 +44,8 @@ class APIController extends Controller
         $title = 'Catalogs';
         $cart = $this->cartItem->getCart($userID)[0];
         $cartCount = count($this->getCartItem->execute($cart['id']));
-        return View::make('catalogs.index', compact('data', 'title', 'cartCount'));
+        $notificationCount = count($this->notificationController->getUnreadNotification());
+        return View::make('catalogs.index', compact('data', 'title', 'cartCount', 'notificationCount'));
     }
 
     public function requestProductDetail(Request $request)

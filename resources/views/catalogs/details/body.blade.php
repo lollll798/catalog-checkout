@@ -73,7 +73,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-md-5" style="place-self: center; text-align-last: end;">
+                        <div class="col-md-6" style="place-self: center; text-align-last: end;">
                             @if ($item->regular_price != '' && $item->sale_price != '')
                                 <span class="text-muted text-decoration-line-through" style="font-weight: normal; font-size: 15px;">
                                     {{ $item->currency }}{{ number_format($item->regular_price, 2) }}

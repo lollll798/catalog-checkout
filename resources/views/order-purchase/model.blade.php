@@ -1,4 +1,4 @@
-<div class="modal fade" id="pomodal" role="dialog">
+<div class="modal fade" id="pomodal" role="dialog" style="z-index: 999999999">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">

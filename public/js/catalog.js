@@ -147,9 +147,11 @@ $(document).ready(function() {
                 $('.product-data').show();
                 $('#ajax-loader').hide();
                 if(data.success == true) {
-                    swal('Success', 'Item(s) added to cart', 'success');
-                    $('#pmodal').modal('hide');
                     $('#itemCountBadge').html(data.count);
+                    $('#pmodal').modal('hide');
+                    $('#pmodal').trigger("reset");
+                    $('.close').click();
+                    swal('Success', 'Item(s) added to cart', 'success');
                 } else {
                     swal('Failed', 'Failed to add item to cart', 'error');
                     $('.product-data').show();
