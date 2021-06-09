@@ -4,7 +4,7 @@
 <div class="cart-item__label" style="margin-left: 15px; font-size: 15px; float: left; width: 100%;">
     Status: {{ ($po['status'] == 1? 'Shipping' : ($po['status'] == 2? 'Completed' : 'Rejected')) }}
     &emsp;
-    @if (empty($po['updated_at']))
+    @if ($po['status'] == 1)
         Checkout at: {{ $po['checkout_date'] }}
     @else
         {{$po['status'] == 2? 'Received' : 'Rejected'}} at: {{ $po['checkout_date'] }}
